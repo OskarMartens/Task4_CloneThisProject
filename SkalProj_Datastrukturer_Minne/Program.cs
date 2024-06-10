@@ -31,7 +31,7 @@ namespace SkalProj_Datastrukturer_Minne
                         //input = false;
                         break;
                     case '4':
-                        CheckParanthesis();
+                        CheckParantheses();
                         //input = false;
                         break;
                     /*
@@ -189,42 +189,43 @@ namespace SkalProj_Datastrukturer_Minne
                 switch(userInput)
                 {
                     case '1':
-                        Console.Clear();
-                        queue.ToList().ForEach(x => Console.WriteLine(x));
+                        ExecuteAction(() =>
+                        {
+                            Console.Clear();
+                            queue.ToList().ForEach(x => Console.WriteLine(x));
+                        }, false);
                         break;
                     case '2':
-                        try
+                        ExecuteAction(() =>
                         {
                             Console.Clear();
                             Console.WriteLine(queue.Peek());
-                        } 
-                        catch(Exception e)
-                        {
-                            Console.WriteLine(e);
-                            continue;
-                        }
+                        }, handleException: true);
                         break;
                     case '3':
-                        Console.WriteLine("Enter a string");
-                        queue.Enqueue(Console.ReadLine());
-                        Console.WriteLine("The queue now consist of:");
-                        queue.ToList().ForEach(x => Console.WriteLine(x));
+                        ExecuteAction(() =>
+                        {
+                            Console.WriteLine("Enter a string");
+                            queue.Enqueue(Console.ReadLine());
+                            Console.WriteLine("The queue now consists of:");
+                            queue.ToList().ForEach(x => Console.WriteLine(x));
+                        }, false);
                         break;
                     case '4':
-                        try
+                        ExecuteAction(() =>
                         {
                             queue.Dequeue();
-                            Console.WriteLine("The queue now consist of:");
+                            Console.WriteLine("The queue now consists of:");
                             queue.ToList().ForEach(x => Console.WriteLine(x));
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e);
+                        }, handleException: true);
                         break;
                     case '5':
-                        Console.WriteLine("Enter a string");
-                        bool queueContains = queue.Contains(Console.ReadLine());
-                        Console.WriteLine(queueContains);
+                        ExecuteAction(() =>
+                        {
+                            Console.WriteLine("Enter a string");
+                            bool queueContains = queue.Contains(Console.ReadLine());
+                            Console.WriteLine(queueContains);
+                        }, false);
                         break;
                     case 'M' or 'm':
                         Main();
@@ -236,6 +237,25 @@ namespace SkalProj_Datastrukturer_Minne
                         Console.WriteLine("Enter some valid input");
                         break;
                 }
+            }
+        }
+
+        static void ExecuteAction(Action action, bool handleException = false)
+        {
+            if (handleException)
+            {
+                try
+                {
+                    action();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+            else
+            {
+                action();
             }
         }
 
@@ -263,15 +283,72 @@ namespace SkalProj_Datastrukturer_Minne
             */
         static void ExamineStack()
         {
+            Stack<string> stack = new Stack<string>();
+            stack.Push("This");
+            stack.Push("A");
+            stack.Push("Sentence");
 
+            while(true)
+            {
+                StackMenu();
+                char userInput = GetUserInput();
+                var currentStack = stack.ToList().ForEach(s => Console.WriteLine(s));
+                switch (userInput)
+                {
+                    case '1':
+                        ExecuteAction(() =>
+                        {
+                            Console.Clear();
+                            Console.WriteLine(currentStack);
+                        });
+                        break;
+                    case '2':
+                        ExecuteAction(() =>
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Enter a string");
+                            stack.Push(Console.ReadLine());
+                            Console.WriteLine("The queue now consists of:");
+                            Console.WriteLine(currentStack);
+                        }, handleException: true);
+                        break;
+                    case '3':
+                        ExecuteAction(() =>
+                        {
+                            Console.Clear();
+                            Console.WriteLine("At the top of the stack:");
+                            Console.WriteLine(stack.Peek());
+                        }, handleException: true);
+                        break;
+                    case '4':
+                        ExecuteAction(() =>
+                        {
+                            Console.Clear();
+                            stack.Pop();
+                            Console.WriteLine("This is the stack now:");
+                            Console.WriteLine(currentStack);
+                        }, handleException: true);
+                        break;
+                    case 'M' or 'm':
+                        Main();
+                        break;
+                    case '0':
+                        Environment.Exit(0);
+                        break;
+                }
+            }
         }
+
         static void StackMenu()
         {
-            Console.Clear();
-            Console.WriteLine("This is the stack menu.")
+            Console.WriteLine("This is the stack menu.");
             Console.WriteLine("What would you like to do?");
-
-
+            Console.WriteLine("1. Examine the stack.");
+            Console.WriteLine("2. Add to the stack.");
+            Console.WriteLine("3. Look at the top of the stack.");
+            Console.WriteLine("4. Remove the item at the top of the stack.");
+            Console.WriteLine("M. Go to main menu.");
+            Console.WriteLine("0. Exit the application.");
         }
 
             /*
@@ -279,12 +356,36 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
-        static void CheckParanthesis()
+        static void CheckParantheses()
         {
             string falseParantheses = "{}()((";
             string trueParantheses = "[({})]";
-            string toCheck = falseParantheses;            
+            string toCheck = falseParantheses;
+            Stack<string> stack = new Stack<string>();
+            while (true)
+            {
+                char userInput = GetUserInput();
+                switch (userInput)
+                {
+                    case '1':
+                        break;
+                    case '2':
+                }
+            }
         }
+
+        static void ParanthesesMenu()
+        {
+            Console.WriteLine("This is the ChechParantheses menu.");
+            Console.WriteLine("What would you like to do?");
+            Console.WriteLine("1. Check the string \"[({})]\"");
+            Console.WriteLine("2. Check the string \"{}()((\"");
+            Console.WriteLine("3. Enter your own string");
+            Console.WriteLine("M. Go to main menu");
+            Console.WriteLine("0. Exit application");
+        }
+
+        static void ValidateParantheses
     }
 }
 
