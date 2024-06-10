@@ -60,51 +60,40 @@ namespace SkalProj_Datastrukturer_Minne
                 }
             }
         }
-        
+
         static bool ValidateParentheses(string input)
         {
-            char firstChar = input[0];
-            if (firstChar == ')' || firstChar == '}' || firstChar == ']')
-                return false;
-
-            char lastChar = input.Last();
-            if (lastChar == '(' || lastChar == '{' || lastChar == '[')
-                return false;
-
             Stack<char> charStack = new Stack<char>();
             foreach (char c in input)
             {
                 switch (c)
                 {
-                    case '(' or '{' or '[':
+                    case '(':
+                    case '{':
+                    case '[':
                         charStack.Push(c);
                         break;
 
                     case ')':
-                        if (charStack.Peek() != '(')
+                        if (charStack.Count == 0 || charStack.Peek() != '(')
                             return false;
-                        else
-                            charStack.Pop();
+                        charStack.Pop();
                         break;
 
                     case ']':
-                        if (charStack.Peek() != '[')
+                        if (charStack.Count == 0 || charStack.Peek() != '[')
                             return false;
-                        else
-                            charStack.Pop();
+                        charStack.Pop();
                         break;
 
                     case '}':
-                        if (charStack.Peek() != '{')
+                        if (charStack.Count == 0 || charStack.Peek() != '{')
                             return false;
-                        else
-                            charStack.Pop();
+                        charStack.Pop();
                         break;
                 }
             }
-            if (charStack.Peek() == '(' || charStack.Peek() == '{' || charStack.Peek() == '[')
-                return false;
-            return true;
+            return charStack.Count == 0;
         }
     }
 }
