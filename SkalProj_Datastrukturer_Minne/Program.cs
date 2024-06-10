@@ -44,7 +44,6 @@
 
         static void MainMenuText()
         {
-            Console.Clear();
             Console.WriteLine(
                 "Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
                                 + "\n1. Examine a List"

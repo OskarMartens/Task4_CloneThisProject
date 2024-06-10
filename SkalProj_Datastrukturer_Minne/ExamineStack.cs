@@ -43,7 +43,7 @@ namespace SkalProj_Datastrukturer_Minne
                     case '1':
                         Helper.ExecuteAction(() =>
                         {
-                            currentStack.ForEach(s => Console.WriteLine(s));
+                            stack.ToList().ForEach(s => Console.WriteLine(s));
                         });
                         break;
 

@@ -16,7 +16,6 @@ namespace SkalProj_Datastrukturer_Minne
     {
         static void QueueMenu()
         {
-            Console.Clear();
             Console.WriteLine("This is the queue menu");
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Examine");
@@ -76,9 +75,9 @@ namespace SkalProj_Datastrukturer_Minne
                         Console.WriteLine("Enter a string");
                         Helper.ExecuteAction(() =>
                         {
-                            bool queueContains = queue.Contains(Console.ReadLine())
+                           bool queueContains = queue.Contains(Console.ReadLine());
+                           Console.WriteLine(queueContains);
                         });
-                        Console.WriteLine(queueContains);
                         break;
                     case 'M' or 'm':
                         Console.Clear();
