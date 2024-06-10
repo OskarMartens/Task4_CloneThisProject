@@ -38,7 +38,6 @@ namespace SkalProj_Datastrukturer_Minne
             {
                 StackMenu();
                 char userInput = Helper.GetCharInput();
-                List<string> currentStack = stack.ToList();
                 switch (userInput)
                 {
                     case '1':
@@ -54,14 +53,13 @@ namespace SkalProj_Datastrukturer_Minne
                             Console.WriteLine("Enter a string");
                             stack.Push(Console.ReadLine());
                             Console.WriteLine("The stack now consists of:");
-                            currentStack.ForEach(s => Console.WriteLine(s));
+                            stack.ToList().ForEach(s => Console.WriteLine(s));
                         });
                         break;
 
                     case '3':
                         Helper.ExecuteAction(() =>
                         {
-                            Console.Clear();
                             Console.WriteLine("At the top of the stack:");
                             Console.WriteLine(stack.Peek());
                         });
@@ -70,10 +68,9 @@ namespace SkalProj_Datastrukturer_Minne
                     case '4':
                         Helper.ExecuteAction(() =>
                         {
-                            Console.Clear();
                             stack.Pop();
                             Console.WriteLine("This is the stack now:");
-                            currentStack.ForEach(s => Console.WriteLine(s));
+                            stack.ToList().ForEach(s => Console.WriteLine(s));
                         });
                         break;
 
