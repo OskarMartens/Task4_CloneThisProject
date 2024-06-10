@@ -8,7 +8,7 @@ namespace SkalProj_Datastrukturer_Minne
     {
         static void ParenthesesMenu()
         {
-            Console.WriteLine("This is the ChechParentheses menu.");
+            Console.WriteLine("This is the CheckParentheses menu.");
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Check the string \"[({})]\"");
             Console.WriteLine("2. Check the string \"{}()((\"");
